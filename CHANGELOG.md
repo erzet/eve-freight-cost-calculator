@@ -4,6 +4,14 @@ All notable changes to this project are documented here. The format is based on
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.1] - 2026-10-07
+
+### Added
+- Release automation: `npm version <patch|minor|major>` now runs the test suite
+  first (`preversion`) and folds `CHANGELOG.md` into the version commit
+  (`version` hook), producing a `vX.Y.Z` commit and tag in one command. The app
+  footer and `__APP_VERSION__` track `package.json` automatically.
+
 ## [1.0.0] - 2026-10-07
 
 Initial release. A fully client-side (React + Vite + TypeScript) jump-freighter
