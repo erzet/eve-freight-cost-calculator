@@ -137,6 +137,17 @@ export default function App() {
     }
   }, [nameToSystem, origin, dest, maxRangeLy, ship, skills.jfc, skills.jf, objective, routeMode, preference, idToSystem]);
 
+  // When a shared link supplies both endpoints, run the calculation
+  // automatically on load so the recipient sees results immediately.
+  const autoRan = useRef(false);
+  useEffect(() => {
+    if (autoRan.current) return;
+    if (initial.origin.trim() && initial.dest.trim()) {
+      autoRan.current = true;
+      void onCalculate();
+    }
+  }, [onCalculate, initial.origin, initial.dest]);
+
   const quote: Quote | null = useMemo(() => {
     if (!result || !result.found) return null;
     return computeQuote({
